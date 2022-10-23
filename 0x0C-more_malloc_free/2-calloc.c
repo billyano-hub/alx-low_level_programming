@@ -1,33 +1,27 @@
 #include "main.h"
 
 /**
- * _realloc -  reallocates a memory block using malloc and free
- * @ptr: pointer
- * @old_size: old size
- * @new_size: new size
- * Return: pointer
+ * _calloc - allocates memory using malloc, and initializes it to zero
+ * @size: size of the memory block to be allocated
+ * @nmemb: number of elements
+ *
+ * Return: pointer to the address of the memory block
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
-{
-	char *clone, *relloc;
-	unsigned int i;
 
-	if (ptr != NULL)
-	clone = ptr;
-	else
-	{ return (malloc(new_size)); }
-	if (new_size == old_size)
-	return (ptr);
-	if (new_size == 0 && ptr != NULL)
-	{ free(ptr);
-	return (0); }
-	relloc = malloc(new_size);
-	if (relloc == NULL)
-	return (0);
-	for (i = 0; i < (old_size || i < new_size); i++)
-	{
-		*(relloc + i) = clone[i];
-	}
-	free(ptr);
-return (relloc);
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+    char *block;
+    unsigned int i;
+
+    if (nmemb == 0 || size == 0)
+        return (NULL);
+    block = malloc(nmemb * size);
+    if (block != NULL)
+    {
+        for (i = 0; i < (nmemb * size); i++)
+            block[i] = 0;
+        return (block);
+    }
+    else
+        return (NULL);
 }
